@@ -33,10 +33,31 @@ namespace Telekocsi
       i.Close();
     }
 
+    static public void HanyHirdeto()
+    {
+      //ismétlődik-e rendszám? (csak ellenőrzés)
+      //var lista = from a in autok
+      //            group a by a.Rendszam into temp
+      //            select temp;
+
+      //foreach (var l in lista)
+      //{
+      //  if (l.Count() > 1)
+      //  {
+      //    Console.WriteLine($"{l.Key} - {l.Count()}");
+      //  }
+      //}
+
+      Console.WriteLine("2. feladat");
+      Console.WriteLine($"   {autok.Count} autós hirdet fuvart");
+    }
 
     static void Main(string[] args)
     {
       Beolvasas();
+      HanyHirdeto();
+
+      Console.ReadKey();
     }
   }
 }
