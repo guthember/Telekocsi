@@ -119,12 +119,41 @@ namespace Telekocsi
 
     }
 
+    static public void IgenyAuto()
+    {
+      Console.WriteLine("5. feladat");
+
+      foreach (var igeny in igenyek)
+      {
+        int i = 0;
+        while (i < autok.Count && 
+          !(
+              igeny.Indulas == autok[i].Indulas && 
+              igeny.Cel == autok[i].Cel && 
+              igeny.Szemelyek <= autok[i].Ferohely
+           )
+        )
+        {
+          i++;
+        }
+        
+        if (i < autok.Count)
+        {
+          Console.WriteLine($"{igeny.Azonosito}=>{autok[i].Rendszam}");
+
+        }
+      }
+
+
+    }
+
     static void Main(string[] args)
     {
       Beolvasas();
       HanyHirdeto();
       BpMiskolcFerohely();
       UtvonalLegtobbFerohely();
+      IgenyAuto();
 
       Console.ReadKey();
     }
