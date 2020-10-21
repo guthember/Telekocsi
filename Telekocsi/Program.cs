@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,10 +53,26 @@ namespace Telekocsi
       Console.WriteLine($"   {autok.Count} autós hirdet fuvart");
     }
 
+    static public void BpMiskolcFerohely()
+    {
+      Console.WriteLine("3. feladat");
+      int ferohely = 0;
+      foreach (var a in autok)
+      {
+        if (a.Indulas == "Budapest" && a.Cel == "Miskolc")
+        {
+          ferohely += a.Ferohely;
+        }
+      }
+
+      Console.WriteLine($"   Összesen {ferohely} férőhelyet hirdettek az autósok Budapestről Miskolcra");
+    }
+
     static void Main(string[] args)
     {
       Beolvasas();
       HanyHirdeto();
+      BpMiskolcFerohely();
 
       Console.ReadKey();
     }
