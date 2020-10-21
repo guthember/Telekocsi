@@ -13,6 +13,7 @@ namespace Telekocsi
     public string Rendszam { get; private set; }
     public string Tel { get; private set; }
     public int Ferohely { get; private set; }
+    public string Utvonal { get; private set; }
 
     public Auto(string indulas, string cel, string rendszam, string tel, int ferohely)
     {
@@ -21,6 +22,7 @@ namespace Telekocsi
       Rendszam = rendszam;
       Tel = tel;
       Ferohely = ferohely;
+      Utvonal = Indulas + "-" + Cel;
     }
   }
 }

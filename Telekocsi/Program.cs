@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Telekocsi
 {
@@ -70,14 +71,51 @@ namespace Telekocsi
 
     static public void UtvonalLegtobbFerohely()
     {
-      List<string> utvonalak = new List<string>();
+      //Dictionary<string, int> utvonalak = new Dictionary<string, int>();
 
-      foreach (var a in autok)
+      //foreach (var a in autok)
+      //{
+      //  if ( !utvonalak.ContainsKey(a.Utvonal))
+      //  {
+      //    utvonalak.Add(a.Utvonal, a.Ferohely);
+      //  }
+      //  else
+      //  {
+      //    utvonalak[a.Utvonal] = utvonalak[a.Utvonal] + a.Ferohely;
+      //  }
+      //}
+
+      int max = 0;
+      string utv = "";
+
+      //foreach (var u in utvonalak)
+      //{
+      //  if (u.Value > max)
+      //  {
+      //    max = u.Value;
+      //    utv = u.Key;
+      //  }
+      //}
+
+      var utvonalak = from a in autok
+                      orderby a.Utvonal
+                      group a by a.Utvonal into temp
+                      select temp;
+
+      foreach (var ut in utvonalak)
       {
-
+        int fh = ut.Sum( x => x.Ferohely );
+        if (max < fh)
+        {
+          max = fh;
+          utv = ut.Key;
+        }
+        //Console.WriteLine($"{ut.Key} -> {ut.Count()}");
       }
 
 
+      Console.WriteLine("4. feladat");
+      Console.WriteLine($"   {max} - {utv}");
 
     }
 
@@ -86,6 +124,7 @@ namespace Telekocsi
       Beolvasas();
       HanyHirdeto();
       BpMiskolcFerohely();
+      UtvonalLegtobbFerohely();
 
       Console.ReadKey();
     }
