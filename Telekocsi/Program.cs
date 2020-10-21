@@ -147,6 +147,39 @@ namespace Telekocsi
 
     }
 
+    static public void Utasuzenet()
+    {
+      StreamWriter file = new StreamWriter("utasuzenetek.txt");
+
+      foreach (var igeny in igenyek)
+      {
+        int i = 0;
+        while (i < autok.Count &&
+          !(
+              igeny.Indulas == autok[i].Indulas &&
+              igeny.Cel == autok[i].Cel &&
+              igeny.Szemelyek <= autok[i].Ferohely
+           )
+        )
+        {
+          i++;
+        }
+
+        if (i < autok.Count)
+        {
+          file.WriteLine($"{igeny.Azonosito}: Rendszám: {autok[i].Rendszam}, Telefonszám: {autok[i].Tel}");
+        }
+        else
+        {
+          file.WriteLine($"{igeny.Azonosito}: Sajnos nem sikerült autót találni");
+        }
+      }
+
+
+      file.Close();
+    }
+
+
     static void Main(string[] args)
     {
       Beolvasas();
@@ -154,6 +187,7 @@ namespace Telekocsi
       BpMiskolcFerohely();
       UtvonalLegtobbFerohely();
       IgenyAuto();
+      Utasuzenet();
 
       Console.ReadKey();
     }
