@@ -68,6 +68,19 @@ namespace Telekocsi
       Console.WriteLine($"   Összesen {ferohely} férőhelyet hirdettek az autósok Budapestről Miskolcra");
     }
 
+    static public void UtvonalLegtobbFerohely()
+    {
+      List<string> utvonalak = new List<string>();
+
+      foreach (var a in autok)
+      {
+
+      }
+
+
+
+    }
+
     static void Main(string[] args)
     {
       Beolvasas();
