@@ -125,26 +125,15 @@ namespace Telekocsi
 
       foreach (var igeny in igenyek)
       {
-        int i = 0;
-        while (i < autok.Count && 
-          !(
-              igeny.Indulas == autok[i].Indulas && 
-              igeny.Cel == autok[i].Cel && 
-              igeny.Szemelyek <= autok[i].Ferohely
-           )
-        )
-        {
-          i++;
-        }
+        int i = igeny.VanAuto(autok);
         
-        if (i < autok.Count)
+        if (i > -1)
         {
           Console.WriteLine($"{igeny.Azonosito}=>{autok[i].Rendszam}");
-
         }
       }
 
-
+      Console.WriteLine();
     }
 
     static public void Utasuzenet()
@@ -153,19 +142,9 @@ namespace Telekocsi
 
       foreach (var igeny in igenyek)
       {
-        int i = 0;
-        while (i < autok.Count &&
-          !(
-              igeny.Indulas == autok[i].Indulas &&
-              igeny.Cel == autok[i].Cel &&
-              igeny.Szemelyek <= autok[i].Ferohely
-           )
-        )
-        {
-          i++;
-        }
+        int i = igeny.VanAuto(autok);
 
-        if (i < autok.Count)
+        if (i > -1)
         {
           file.WriteLine($"{igeny.Azonosito}: Rendszám: {autok[i].Rendszam}, Telefonszám: {autok[i].Tel}");
         }
